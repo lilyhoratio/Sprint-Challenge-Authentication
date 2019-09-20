@@ -11,6 +11,7 @@ function generateToken(user) {
   const secret = process.env.JWT_SECRET;
 
   const options = {
+    // expiresIn: "3000ms"
     expiresIn: "1d"
   };
 
@@ -48,7 +49,12 @@ router.post("/login", (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-        res.status(200).json(user);
+        const token = generateToken(user);
+        // 1 - generate token and giving it back to the client. Next is authenticate-middleware
+        res.status(200).json({
+          message: `Hello ${user.username}!`,
+          token
+        });
       } else {
         res.status(401).json({ message: "incorrect username or password" });
       }
