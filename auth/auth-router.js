@@ -1,6 +1,21 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const db = require("../database/dbConfig.js");
+const jwt = require("jsonwebtoken");
+
+function generateToken(user) {
+  const payload = {
+    username: user.username
+  };
+
+  const secret = process.env.JWT_SECRET;
+
+  const options = {
+    expiresIn: "1d"
+  };
+
+  return jwt.sign(payload, secret, options);
+}
 
 router.post("/register", (req, res) => {
   // implement registration
