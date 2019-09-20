@@ -18,6 +18,8 @@ function generateToken(user) {
   return jwt.sign(payload, secret, options);
 }
 
+// ask about /refresh endpoint
+
 router.post("/register", (req, res) => {
   // implement registration
   let { username, password } = req.body;
