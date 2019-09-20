@@ -39,12 +39,21 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What is the purpose of using _sessions_?
+      Sessions act as a way for an application to remember who you are, and as a consequence, information about you and your actions that might be useful as you travel through an application (e.g. think checking out at an e-commerce site). Typically, because client requests to different resources are through HTTP and stateless, the server doesn’t have a way to know who you are and persist information about the client. Sessions fixes this issue, in which the server verifies the client’s credentials, creates a session for the client and then sends back a cookie for the client to store.
 
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+      Bcrypt is a module that hashes data multiple times. It does this by generating a random salt (another string) as an add on to a password, and then “hashes” that data. Bcrypt allows us to store passwords as this generated string rather than the original string.
 
 - [ ] What does bcrypt do to slow down attackers?
+      Bcrypt allows hashing of passwords multiple times so that attackers, who may be using rainbow tables to brute-force their way into converting the hashed passwords back to the original - may take a very long time.
 
 - [ ] What are the three parts of the JSON Web Token?
+
+  - Header - hashing algorithm used and type of token (JWT)
+  - Payload - contains claims information, which are statements about the entity (usually, the user’s username/email, etc)
+  - Signature - made up of hash of the header, payload, and secret. The secret is held by the server.
+
+  All three parts are base64 encoded and put together to form the JSON Web Token.
 
 ## Minimum Viable Product
 
